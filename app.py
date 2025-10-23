@@ -17,6 +17,8 @@ if data_frame is not None:
 
     if model_col not in df.columns:
         df[model_col] = [f"Vehicle {i+1}" for i in range(len(df))]
+        
+    df = df[df['StandardComsumptionKMPerLitre'] > 0].dropna(subset=['StandardComsumptionKMPerLitre'])
 
     sort_option = st.checkbox("Sort by better fuel efficiency")
     if sort_option:
@@ -37,6 +39,8 @@ if data_frame is not None:
     chart_data = df[[selected_column, 'StandardComsumptionKMPerLitre']]
     chart_data = chart_data.set_index(selected_column)
 
+
+    st.write("Line Chart Based on Selected X-axis (Filtered out data with null standard comsumption ): ")
     st.line_chart(chart_data)
 
 else:
