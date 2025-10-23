@@ -10,7 +10,9 @@ if data_frame is not None:
     df = pd.read_csv(data_frame)
     df.columns = df.columns.str.strip()
 
-    st.dataframe(df)
+    if 'StandardComsumptionKMPerLitre' in df.columns:
+        df = df[df['StandardComsumptionKMPerLitre'] > 0].dropna(subset=['StandardComsumptionKMPerLitre'])
+        st.dataframe(df)
 
     required_cols = ['VehicleTankCapacity', 'StandardComsumptionKMPerLitre']
     model_col = 'VehicleModelName'
@@ -20,7 +22,7 @@ if data_frame is not None:
         
     df = df[df['StandardComsumptionKMPerLitre'] > 0].dropna(subset=['StandardComsumptionKMPerLitre'])
 
-    sort_option = st.checkbox("Sort by better fuel efficiency")
+    sort_option = st.checkbox("Sort by Better Fuel Efficiency")
     if sort_option:
         df = df.sort_values(by='StandardComsumptionKMPerLitre', ascending=False)
     
