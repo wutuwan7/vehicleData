@@ -20,8 +20,6 @@ if data_frame is not None:
     if model_col not in df.columns:
         df[model_col] = [f"Vehicle {i+1}" for i in range(len(df))]
         
-    df = df[df['StandardComsumptionKMPerLitre'] > 0].dropna(subset=['StandardComsumptionKMPerLitre'])
-
     sort_option = st.checkbox("Sort by Better Fuel Efficiency")
     if sort_option:
         df = df.sort_values(by='StandardComsumptionKMPerLitre', ascending=False)
