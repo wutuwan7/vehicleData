@@ -13,9 +13,6 @@ if data_frame is not None:
     except Exception:
         df = pd.read_csv(data_frame)
     df.columns = df.columns.str.strip()
-
-    st.subheader("Data Preview")
-    st.dataframe(df, use_container_width=True, height=(len(df) * 35 if len(df) < 20 else 700))
     
     if 'StandardComsumptionKMPerLitre' in df.columns:
         df = df[df['StandardComsumptionKMPerLitre'] > 0].dropna(subset=['StandardComsumptionKMPerLitre'])
@@ -34,6 +31,9 @@ if data_frame is not None:
         df = df.sort_values(by='VehicleTankCapacity', ascending=False)
     elif sort_option == "Model Name":
         df = df.sort_values(by='VehicleModelName')
+    
+    st.subheader("Data Preview")
+    st.dataframe(df, use_container_width=True, height=(len(df) * 35 if len(df) < 20 else 700))
 
     # Create figure with twin y-axes
     fig, ax1 = plt.subplots(figsize=(max(12, len(df)*0.6), 10))
