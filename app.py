@@ -36,8 +36,6 @@ if data_file is not None:
     y_right = df["StandardComsumptionKMPerLitre"]
     x_labels = df["VehicleModelName"]
 
-    st.write("Dual Y-Axis Line Chart:")
-
     fig, ax1 = plt.subplots(figsize=(14, 6), dpi=150)
 
     line1 = ax1.plot(x, y_left, color="tab:blue", marker="o", label="Tank Capacity (L)")
@@ -68,3 +66,4 @@ if data_file is not None:
 
 else:
     st.info("Please upload a file to begin.")
+
