@@ -36,7 +36,7 @@ if data_file is not None:
     y_right = df["StandardComsumptionKMPerLitre"]
     x_labels = df["VehicleModelName"]
 
-    fig, ax1 = plt.subplots(figsize=(18, 6), dpi=150)
+    fig, ax1 = plt.subplots(figsize=(19, 6), dpi=150)
 
     line1 = ax1.plot(x, y_left, color="tab:blue", marker="o", label="Tank Capacity (L)")
     ax1.set_ylabel("Tank Capacity (Litres)", color="tab:blue")
@@ -66,5 +66,6 @@ if data_file is not None:
 
 else:
     st.info("Please upload a file to begin.")
+
 
 
